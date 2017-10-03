@@ -13,7 +13,10 @@
   <input type="submit">
 </form>
 
+<h1>Select a poem!</h1>
+<select class="selectpicker">
 <!-- Display all the authors from db -->
 <% authors.authors.forEach(function(authors){ %>
-  <h2><%= authors %></h2>
+  <option><%= authors %></option>
 <% }); %>
+</select>

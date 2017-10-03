@@ -66,9 +66,7 @@ app.get("/", function(req, res){
 //handle the uploaded files
 app.post("/upload", upload.single("myFile"), function(req, res){
   var text = req.file.buffer.toString("utf8");
-  // userUploads.push(text);
   console.log(text);
-  // console.log(text, text.length);
   res.redirect("/");
 });
 
