@@ -2,7 +2,14 @@ require('dotenv').config();
 var express = require('express');
 var ejsLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
+var request = require("request");
 var app = express();
+
+//multer shiz
+var multer = require("multer");
+var fs = require("fs");
+var storage = multer.memoryStorage()
+var upload = multer({storage: storage});
 
 var session = require('express-session');
 var flash = require('connect-flash');
@@ -46,8 +53,23 @@ var passport = require('./config/ppConfig');
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', function(req, res) {
-  res.render('index');
+//index page, handles the poetry api stuff
+app.get("/", function(req, res){
+  var poetryUrl = "http://poetrydb.org/author";
+  console.log("HERE!")
+  request(poetryUrl, function(error, response, body){
+    var authors = JSON.parse(body);
+    res.render("index", {authors: authors});
+  })
+});
+
+//handle the uploaded files
+app.post("/upload", upload.single("myFile"), function(req, res){
+  var text = req.file.buffer.toString("utf8");
+  // userUploads.push(text);
+  console.log(text);
+  // console.log(text, text.length);
+  res.redirect("/");
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
