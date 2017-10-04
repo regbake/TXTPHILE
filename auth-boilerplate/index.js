@@ -58,15 +58,6 @@ app.get("/", function(req, res){
   res.render("index");
 });
 
-app.get("/authors", function(req, res){
-  var poetryUrl = "http://poetrydb.org/author";
-
-  request(poetryUrl, function(error, response, body){
-    var authors = JSON.parse(body);
-    res.render("poems/authors", {authors: authors});
-  })
-});
-
 //handle the uploaded files
 app.post("/upload", upload.single("myFile"), function(req, res){
   var text = req.file.buffer.toString("utf8");
@@ -79,6 +70,7 @@ app.get('/profile', isLoggedIn, function(req, res) {
 });
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/user', require('./controllers/user'));
 
 var server = app.listen(process.env.PORT || 3000);
 
