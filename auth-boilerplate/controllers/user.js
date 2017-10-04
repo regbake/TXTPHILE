@@ -26,8 +26,15 @@ router.post("/upload", upload.single("myFile"), function(req, res){
 
 //to handle the uploaded text
 router.post("/", function(req, res){
-  console.log(req.body.input)
-  res.redirect("/user");
+  var userInput = req.body.userInput; //input from textform
+  db.document.create({
+    body: userInput
+  }).then(function(){
+    res.redirect("/user");
+  });
+
+  //user upload is in a string, I should be able to put this into the
+  //db at this point, I can add functions to clean the data later
 });
 
 
