@@ -1,1 +1,17 @@
-<h1>this is the home</h1>
+<h1>
+  Home Page, to be viewed after user login!/Probably take tha place
+  of the user profile...
+</h1>
+<p>
+  This should be where the user can upload documents or insert textfiles
+</p>
+
+<form enctype="multipart/form-data" action="/user" method="post">
+  <textarea>Input text here!</textarea>
+  <button type="submit" class="btn btn-success">Submit Text</button>
+</form>
+
+<form enctype="multipart/form-data" action="/upload" method="post">
+  <input type="file" name="myFile">
+  <input type="submit">
+</form>
