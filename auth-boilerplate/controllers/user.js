@@ -11,12 +11,12 @@ var storage = multer.memoryStorage()
 var upload = multer({storage: storage});
 
 //removed isLoggedIn for testing
-router.get("/", function(req, res){
-    res.render("user/home");
+router.get("/", isLoggedIn, function(req, res){
+    res.render("user/home", {currentUser: req.user});
 });
 
 //handle the uploaded files
-router.post("/upload", upload.single("myFile"), function(req, res){
+router.post("/upload", isLoggedIn, upload.single("myFile"), function(req, res){
   var text = req.file.buffer.toString("utf8");
   userUploads.push(text);
   console.log(userUploads);
@@ -25,10 +25,13 @@ router.post("/upload", upload.single("myFile"), function(req, res){
 });
 
 //to handle the uploaded text
-router.post("/", function(req, res){
+router.post("/", isLoggedIn, function(req, res){
   var userInput = req.body.userInput; //input from textform
+  var currentUserId = req.user.dataValues.id;
+
   db.document.create({
-    body: userInput
+    body: userInput,
+    userId: currentUserId
   }).then(function(){
     res.redirect("/user");
   });
