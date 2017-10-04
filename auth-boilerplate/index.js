@@ -60,7 +60,7 @@ app.get("/", function(req, res){
 
 app.get("/authors", function(req, res){
   var poetryUrl = "http://poetrydb.org/author";
-  
+
   request(poetryUrl, function(error, response, body){
     var authors = JSON.parse(body);
     res.render("poems/authors", {authors: authors});
