@@ -26,7 +26,7 @@ router.post("/upload", upload.single("myFile"), function(req, res){
 
 //to handle the uploaded text
 router.post("/", function(req, res){
-  console.log("text was submitted")
+  console.log(req.body.input)
   res.redirect("/user");
 });
 
