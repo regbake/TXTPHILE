@@ -55,11 +55,15 @@ app.use(passport.session());
 
 //index page, handles the poetry api stuff
 app.get("/", function(req, res){
+  res.render("index");
+});
+
+app.get("/authors", function(req, res){
   var poetryUrl = "http://poetrydb.org/author";
-  console.log("HERE!")
+  
   request(poetryUrl, function(error, response, body){
     var authors = JSON.parse(body);
-    res.render("index", {authors: authors});
+    res.render("poems/authors", {authors: authors});
   })
 });
 

@@ -1,0 +1,15 @@
+<h1>Select a poem!</h1>
+
+<select class="selectpicker" onChange="go(this.value)">
+<!-- Display all the authors from db -->
+<% authors.authors.forEach(function(authors){ %>
+  <option><%= authors %></option>
+<% }); %>
+</select>
+
+<script>
+function go(param) {
+console.log(param);  
+}
+
+</script>
