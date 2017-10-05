@@ -96,8 +96,4 @@ router.post("/", isLoggedIn, upload.single("myFile"), function(req, res){
   }
 });
 
-
-
-
-
 module.exports = router;

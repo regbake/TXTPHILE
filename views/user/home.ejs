@@ -23,6 +23,8 @@
 <div id="current-texts">
   <% document.forEach(function(output){ %>
     <input type="checkbox" name="texts" value="<%- output.body %>">
+
+    <!-- I WANT TO MAKE THIS ONLY DISPLAY A BIT OF TEXT... -->
     <p> <%= output.body %> </p>
     <p>
       <a href="/user/<%= output.id %>/edit">edit</a>
@@ -34,13 +36,15 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
+//to get the selected boxes on click
 function compareTexts() {
   $('input[name="texts"]:checked').each(function(){
-    console.log(this.value);
+    var text = this.value;
+    console.log(text.length);
   });
 }
 
-
+//maximizes the number of checkboxes to two
 $("#current-texts :checkbox").change(function(){
   var check = $(this).closest("#current-texts").find(":checkbox:checked");
   if (check.length > 2) {

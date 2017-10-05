@@ -21,6 +21,8 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 
+app.use(express.static(__dirname + '/public/'));
+
 
 /*
  * setup the session with the following:
