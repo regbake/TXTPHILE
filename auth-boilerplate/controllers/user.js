@@ -24,23 +24,34 @@ router.get("/", isLoggedIn, function(req, res){
   });
 });
 
+//delete
+router.delete("/:id", isLoggedIn, function(req,res){
+  var postId = req.params.id;
+  var currentUserId = req.user.dataValues.id;
+
+  console.log("made it to the delete route")
+  db.document.destroy({
+    where: {userId: currentUserId,
+      id: postId
+      }
+  }).then(function(document){
+    res.send({message: "success"});
+  });
+});
+
 router.get("/:id", isLoggedIn, function(req,res){
   var postId = req.params.id; //the id of the current post
   var currentUserId = req.user.dataValues.id;
+
+  console.log("running the get route");
 
   db.document.findOne({
     where: {userId: currentUserId,
       id: postId
       }
   }).then(function(document){
-    console.log(document.dataValues.body)
     res.render("user/view-input", {document: document});
   });
-});
-
-//delete
-router.delete("/:id", isLoggedIn, function(req,res){
-  console.log("great success");
 });
 
 //handle the uploaded files

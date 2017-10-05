@@ -25,3 +25,26 @@
     <a class="delete-link" href="/user/<%= output.id %>">delete</a>
   </p>
 <% }); %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+//for the delete route
+$('.delete-link').on('click', function(e) {
+    e.preventDefault();
+    console.log("ajax delete wassup")
+    var element = $(this);
+    var url = element.attr('href');
+
+    $.ajax({
+        method: 'DELETE',
+        url: url
+    }).done(function(data) {
+        // get data returned from the DELETE route
+        console.log(data);
+
+        // go back to the homepage after deleting anything.
+        window.location = '/user';
+    });
+});
+
+</script>
