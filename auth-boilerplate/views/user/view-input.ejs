@@ -1,3 +1,28 @@
 <h1>sup blood</h1>
 
-<p> <%= document.dataValues.body %> </p>
+<form action="/user/<%= document.dataValues.id %>" method="PUT" id="put-form">
+  <textarea name="editInput"> <%= document.dataValues.body %> </textarea>
+  <button type="submit" class="btn btn-success">Edit Text</button>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+$('#put-form').on('submit', function(e) {
+  console.log("what is up here");
+    e.preventDefault();
+    var element = $(this);
+    var url = element.attr('action');
+    var formData = element.serialize();
+    $.ajax({
+        method: 'PUT',
+        url: url,
+        data: formData
+    }).done(function(data) {
+        // get data returned from the PUT route
+        console.log(data);
+
+        // refresh the page we're on using GET to display the item details.
+        window.location = "/user";
+    });
+});
+</script>

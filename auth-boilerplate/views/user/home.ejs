@@ -21,7 +21,7 @@
 <% document.forEach(function(output){ %>
   <p> <%= output.body %> </p>
   <p>
-    <a href="#">edit</a>
+    <a href="/user/<%= output.id %>/edit">edit</a>
     <a class="delete-link" href="/user/<%= output.id %>">delete</a>
   </p>
 <% }); %>

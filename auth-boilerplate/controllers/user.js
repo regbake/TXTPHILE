@@ -29,7 +29,6 @@ router.delete("/:id", isLoggedIn, function(req,res){
   var postId = req.params.id;
   var currentUserId = req.user.dataValues.id;
 
-  console.log("made it to the delete route")
   db.document.destroy({
     where: {userId: currentUserId,
       id: postId
@@ -39,7 +38,12 @@ router.delete("/:id", isLoggedIn, function(req,res){
   });
 });
 
-router.get("/:id", isLoggedIn, function(req,res){
+router.put("/:id", isLoggedIn, function(req,res){
+  console.log("sup boooo")
+  res.send({message: "success"});
+});
+
+router.get("/:id/edit", isLoggedIn, function(req,res){
   var postId = req.params.id; //the id of the current post
   var currentUserId = req.user.dataValues.id;
 
