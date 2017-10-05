@@ -1,0 +1,19 @@
+<h1>Select an author!</h1>
+
+<form method="post" action="/titles">
+
+<select class="selectpicker" onChange="selectAuthor(this.value)">
+<!-- Display all the authors from db -->
+<% authors.authors.forEach(function(authors){ %>
+  <option><%= authors %></option>
+<% }); %>
+</select>
+<button type="submit" class="btn btn-success">Select</button>
+</form>
+
+<script>
+function selectAuthor(param) {
+console.log(param);
+}
+
+</script>

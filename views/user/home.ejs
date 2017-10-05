@@ -1,0 +1,50 @@
+<h1>
+  Home Page, to be viewed after user login!/Probably take tha place
+  of the user profile...
+</h1>
+<p>
+  This should be where the user can upload documents or insert textfiles
+</p>
+
+<form action="/user" method="post">
+  <textarea name="userInput">Input text here!</textarea>
+  <button type="submit" class="btn btn-success">Submit Text</button>
+</form>
+
+<form enctype="multipart/form-data" action="/user" method="post">
+  <input type="file" name="myFile">
+  <input type="submit">
+</form>
+
+<p>All the current user's submissions</p>
+
+<% document.forEach(function(output){ %>
+  <p> <%= output.body %> </p>
+  <p>
+    <a href="/user/<%= output.id %>/edit">edit</a>
+    <a class="delete-link" href="/user/<%= output.id %>">delete</a>
+  </p>
+<% }); %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+//for the delete route
+$('.delete-link').on('click', function(e) {
+    e.preventDefault();
+    console.log("ajax delete wassup")
+    var element = $(this);
+    var url = element.attr('href');
+
+    $.ajax({
+        method: 'DELETE',
+        url: url
+    }).done(function(data) {
+        // get data returned from the DELETE route
+        console.log(data);
+
+        // go back to the homepage after deleting anything.
+        window.location = '/user';
+    });
+});
+
+</script>
