@@ -24,6 +24,25 @@ router.get("/", isLoggedIn, function(req, res){
   });
 });
 
+router.get("/:id", isLoggedIn, function(req,res){
+  var postId = req.params.id; //the id of the current post
+  var currentUserId = req.user.dataValues.id;
+
+  db.document.findOne({
+    where: {userId: currentUserId,
+      id: postId
+      }
+  }).then(function(document){
+    console.log(document.dataValues.body)
+    res.render("user/view-input", {document: document});
+  });
+});
+
+//delete
+router.delete("/:id", isLoggedIn, function(req,res){
+  console.log("great success");
+});
+
 //handle the uploaded files
 router.post("/", isLoggedIn, upload.single("myFile"), function(req, res){
   var currentUserId = req.user.dataValues.id;
