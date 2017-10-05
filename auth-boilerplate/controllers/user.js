@@ -39,8 +39,19 @@ router.delete("/:id", isLoggedIn, function(req,res){
 });
 
 router.put("/:id", isLoggedIn, function(req,res){
-  console.log("sup boooo")
-  res.send({message: "success"});
+  var postId = req.params.id; //the id of the current post
+  var currentUserId = req.user.dataValues.id;
+  var newContent = req.body.editInput;
+
+  db.document.update({
+    body: newContent
+  }, {
+    where: {userId: currentUserId,
+    id: postId
+    }
+  }).then(function(document){
+    res.send({message: "success"});
+  });
 });
 
 router.get("/:id/edit", isLoggedIn, function(req,res){
