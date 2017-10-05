@@ -16,18 +16,38 @@
   <input type="submit">
 </form>
 
-<p>All the current user's submissions</p>
+<p>All the current user's submissions (select two to compare!)</p>
+<button type="button" class="btn btn-success" onClick="compareTexts()">Compare txts</button>
 
-<% document.forEach(function(output){ %>
-  <p> <%= output.body %> </p>
-  <p>
-    <a href="/user/<%= output.id %>/edit">edit</a>
-    <a class="delete-link" href="/user/<%= output.id %>">delete</a>
-  </p>
-<% }); %>
+
+<div id="current-texts">
+  <% document.forEach(function(output){ %>
+    <input type="checkbox" name="texts" value="<%- output.body %>">
+    <p> <%= output.body %> </p>
+    <p>
+      <a href="/user/<%= output.id %>/edit">edit</a>
+      <a class="delete-link" href="/user/<%= output.id %>">delete</a>
+    </p>
+  <% }); %>
+</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
+function compareTexts() {
+  $('input[name="texts"]:checked').each(function(){
+    console.log(this.value);
+  });
+}
+
+
+$("#current-texts :checkbox").change(function(){
+  var check = $(this).closest("#current-texts").find(":checkbox:checked");
+  if (check.length > 2) {
+    this.checked = false;
+  }
+})
+
 //for the delete route
 $('.delete-link').on('click', function(e) {
     e.preventDefault();
