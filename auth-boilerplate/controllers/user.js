@@ -34,7 +34,7 @@ router.post("/", isLoggedIn, upload.single("myFile"), function(req, res){
   }
 
   if (text !== undefined) { //the input from textform
-    
+
     db.document.create({
       body: text,
       userId: currentUserId

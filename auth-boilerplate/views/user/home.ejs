@@ -15,3 +15,9 @@
   <input type="file" name="myFile">
   <input type="submit">
 </form>
+
+<p>All the current user's submissions</p>
+
+<% document.forEach(function(output){ %>
+  <p> <%= output.body %> </p>
+<% }); %>
