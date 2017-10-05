@@ -16,12 +16,16 @@ router.get("/", isLoggedIn, function(req, res){
 });
 
 //handle the uploaded files
-router.post("/upload", isLoggedIn, upload.single("myFile"), function(req, res){
+router.post("/", isLoggedIn, upload.single("myFile"), function(req, res){
   var text = req.file.buffer.toString("utf8");
-  userUploads.push(text);
-  console.log(userUploads);
-  // console.log(text, text.length);
-  res.redirect("/");
+  var currentUserId = req.user.dataValues.id;
+
+  db.document.create({
+    body: text,
+    userId: currentUserId
+  })
+  console.log(text);
+  res.redirect("/user");
 });
 
 //to handle the uploaded text
