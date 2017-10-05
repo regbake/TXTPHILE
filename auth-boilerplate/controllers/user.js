@@ -34,15 +34,13 @@ router.post("/", isLoggedIn, upload.single("myFile"), function(req, res){
   }
 
   if (text !== undefined) { //the input from textform
-
     db.document.create({
       body: text,
       userId: currentUserId
     })
     res.redirect("/user");
   } else if (userInput !== undefined) {
-
-    db.document.create({ //to handle the uploaded text
+    db.document.create({ //to handle the uploaded   text
       body: userInput,
       userId: currentUserId
     }).then(function(){
