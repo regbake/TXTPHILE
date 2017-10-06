@@ -34,7 +34,7 @@
   <% }); %>
 </div>
 
-<h1>The most common words...</h1>
+<h1 id="displayWords-header">The most common words...</h1>
 <h2 id="displayWords"></h2>
 
 <!-- //////// -->
@@ -103,11 +103,14 @@ function compareTexts() {
   //$("#displayWords").text(commonWords(firstStr, secondStr));
 
   if (i === 1) {
+    $("#displayWords-header").text("Word frequencies in selected txt: ");
+    $("#displayWords").html("");
     Object.keys(countWords(firstStr)).forEach(function(word){
-      // console.log(word, countWords(firstStr)[word]);
       $("#displayWords").append("<h2>"+ word + countWords(firstStr)[word] + "</h2>");
     });
   } else if (i === 2) {
+    $("#displayWords-header").text("Words in common between selected txts: ");
+    $("#displayWords").html("");
     $("#displayWords").text(commonWords(firstStr, secondStr));
   }
 
