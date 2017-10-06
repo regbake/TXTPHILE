@@ -37,7 +37,7 @@
 <h1>The most common words...</h1>
 <h2 id="displayWords"></h2>
 
-//////
+<!-- //////// -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 //to break down the word frequencies
@@ -54,30 +54,6 @@ function countWords(string) {
 function commonWords(str1, str2) {
   var words1 = str1.split(/\s+/g);
   var words2 = str2.split(/\s+/g);
-
-  // var allWords = {};
-  // // set 1 for all words in words1
-  // for(var i=0; i < words1.length; i++) {
-  //     var low = words1[i].toLowerCase(); //making it lower case
-  //     allWords[low] = 1; //giving the value 1
-  // }
-  // console.log(allWords)
-  // // add 2 for all words in words2
-  // for(var i=0; i < words2.length; i++) {
-  //     var current = 0;
-  //     var low = words2[i].toLowerCase();
-  //     if(allWords.hasOwnProperty(low)) {
-  //         if(allWords[low] > 1) {
-  //             continue;
-  //         }
-  //     }
-  //     current += 2[];
-  //     allWords[low] = current;
-  //     console.log(allWords);
-  // }
-  // now those seen in both lists have value 3, the rest either 1 or 2.
-  // this is effectively a bitmask where the unit bit indicates words1 membership
-  // and the 2 bit indicates words2 membership
 
   var allWords = {};
 
@@ -105,7 +81,7 @@ function commonWords(str1, str2) {
       }
   }
 
-  console.log("all words is: ", allWords, " || common words are: ", both);
+  // console.log("all words is: ", allWords, " || common words are: ", both);
   return both;
 }
 
@@ -123,12 +99,8 @@ function compareTexts() {
     }
   });
 
-  // $("#displayWords").text(countWords(firstStr));
-  // console.log(countWords(firstStr));
-  // console.log(countWords(secondStr));
-
-  console.log(commonWords(firstStr, secondStr), "empty");
-  //I think I can just use functions here to run all of the analysis stuff
+  $("#displayWords").text(commonWords(firstStr, secondStr));
+  return commonWords(firstStr, secondStr);
 }
 
 //maximizes the number of checkboxes to two
