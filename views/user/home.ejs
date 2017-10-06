@@ -104,7 +104,8 @@ function compareTexts() {
 
   if (i === 1) {
     $("#displayWords-header").text("Word frequencies in selected txt: ");
-    $("#displayWords").html("");
+    $("#displayWords").html(""); //clear the DOM
+
     Object.keys(countWords(firstStr)).forEach(function(word){
       $("#displayWords").append("<h2>Word: '"+ word.substr(1) + "' Frequency: " + countWords(firstStr)[word] + "</h2>");
     });
