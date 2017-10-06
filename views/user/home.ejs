@@ -2,25 +2,26 @@
   Home Page, to be viewed after user login!/Probably take tha place
   of the user profile...
 </h1>
-<p>
-  This should be where the user can upload documents or insert textfiles
-</p>
+<div id="main-body">
+  <p>
+    This should be where the user can upload documents or insert textfiles
+  </p>
 
-<form action="/user" method="post">
-  <textarea name="userInput">Input text here!</textarea>
-  <button type="submit" class="btn btn-success">Submit Text</button>
-</form>
-
-<form enctype="multipart/form-data" action="/user" method="post">
-  <input type="file" name="myFile">
-  <input type="submit">
-</form>
-
-<p>All the current user's submissions (select two to compare!)</p>
-<button type="button" class="btn btn-success" onClick="compareTexts()">Compare txts</button>
-
+  <form action="/user" method="post" class="input-form">
+    <textarea name="userInput" cols="40">Input text here!</textarea> <br>
+    <button type="submit" class="btn btn-success">Submit Text</button>
+  </form>
+  <br>
+  <form enctype="multipart/form-data" action="/user" method="post" class="input-form">
+    <input type="file" name="myFile">
+    <button type="submit" class="btn btn-success">Submit File</button>
+  </form>
+</div>
 
 <div id="current-texts">
+  <p>(select two to compare!)</p>
+  <button type="button" class="btn btn-success" id="compare-btn" onClick="compareTexts()">Compare txts</button>
+
   <% document.forEach(function(output){ %>
     <div class="display-text">
       <input type="checkbox" name="texts" value="<%- output.body %>">
@@ -34,7 +35,7 @@
   <% }); %>
 </div>
 
-<h1 id="displayWords-header">The most common words...</h1>
+<h1 id="displayWords-header">Word data:</h1>
 <h2 id="displayWords"></h2>
 
 <!-- //////// -->

@@ -16,6 +16,10 @@ body {
   font-size: 30px;
 }
 
+#header-logo:hover {
+  color: lightgreen;
+}
+
 #header {
   /*position: relative;*/
   width: 100%;
@@ -45,9 +49,47 @@ body {
   color: coral;
 }
 
+#main-body{
+  /*border: black solid 1px;*/
+  width: 50%;
+  text-align: center;
+}
+
+.input-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#current-texts {
+  position: relative;
+  /*border: solid purple 1px;*/
+  width: 40%;
+  top: -180px;
+  float: right;
+  text-align: center;
+
+}
+
+#compare-btn {
+  text-align: center;
+}
+
 .display-text {
   position: relative;
   border: solid white 1px;
+  margin: 5px;
+  width: 100%;
+  left: 0;
+}
+
+.body-text {
+  padding-top: 12%;
   width: 50%;
-  left: 20%;
+  margin: 0 auto;
+}
+
+.header-text {
+  padding-top: 5%;
+  width: 50%;
+  margin: 0 auto;
 }
