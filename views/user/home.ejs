@@ -22,26 +22,113 @@
 
 <div id="current-texts">
   <% document.forEach(function(output){ %>
-    <input type="checkbox" name="texts" value="<%- output.body %>">
-
-    <!-- I WANT TO MAKE THIS ONLY DISPLAY A BIT OF TEXT... -->
-    <p> <%= output.body %> </p>
-    <p>
-      <a href="/user/<%= output.id %>/edit">edit</a>
-      <a class="delete-link" href="/user/<%= output.id %>">delete</a>
-    </p>
+    <div class="display-text">
+      <input type="checkbox" name="texts" value="<%- output.body %>">
+      <!-- I WANT TO MAKE THIS ONLY DISPLAY A BIT OF TEXT... -->
+      <p> <%= output.body %> </p>
+      <p>
+        <a href="/user/<%= output.id %>/edit">edit</a>
+        <a class="delete-link" href="/user/<%= output.id %>">delete</a>
+      </p>
+    </div>
   <% }); %>
 </div>
 
+<h1>The most common words...</h1>
+<h2 id="displayWords"></h2>
 
+//////
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-//to get the selected boxes on click
+//to break down the word frequencies
+function countWords(string) {
+  var wordCounts = { };
+  var words = string.split(/\s/);
+
+  for(var i = 0; i < words.length; i++)
+      wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
+
+  return wordCounts;
+}
+
+function commonWords(str1, str2) {
+  var words1 = str1.split(/\s+/g);
+  var words2 = str2.split(/\s+/g);
+
+  // var allWords = {};
+  // // set 1 for all words in words1
+  // for(var i=0; i < words1.length; i++) {
+  //     var low = words1[i].toLowerCase(); //making it lower case
+  //     allWords[low] = 1; //giving the value 1
+  // }
+  // console.log(allWords)
+  // // add 2 for all words in words2
+  // for(var i=0; i < words2.length; i++) {
+  //     var current = 0;
+  //     var low = words2[i].toLowerCase();
+  //     if(allWords.hasOwnProperty(low)) {
+  //         if(allWords[low] > 1) {
+  //             continue;
+  //         }
+  //     }
+  //     current += 2[];
+  //     allWords[low] = current;
+  //     console.log(allWords);
+  // }
+  // now those seen in both lists have value 3, the rest either 1 or 2.
+  // this is effectively a bitmask where the unit bit indicates words1 membership
+  // and the 2 bit indicates words2 membership
+
+  var allWords = {};
+
+  for (var i=0; i<words1.length; i++) {
+    var insertWord = words1[i];
+    allWords[insertWord] = 1;
+  };
+
+  for (var i=0; i<words2.length; i++) {
+    var curr = 0;
+    var insertWord = words2[i];
+
+    if (allWords.hasOwnProperty(insertWord)) {
+      if (allWords[insertWord] = 1) {
+        //found a match
+        allWords[insertWord] = 3;
+      }
+    };
+  };
+
+  var both = [];
+  for(var prop in allWords) {
+      if(allWords.hasOwnProperty(prop) && (allWords[prop] == 3)) {
+          both.push(prop);
+      }
+  }
+
+  console.log("all words is: ", allWords, " || common words are: ", both);
+  return both;
+}
+
 function compareTexts() {
+  var i = 0;
+  var firstStr, secondStr;
+
+  //give variable names to the checked texts
   $('input[name="texts"]:checked').each(function(){
-    var text = this.value;
-    console.log(text.length);
+    if (i === 0) {
+      firstStr = this.value;
+      i++
+    } else {
+      secondStr = this.value;
+    }
   });
+
+  // $("#displayWords").text(countWords(firstStr));
+  // console.log(countWords(firstStr));
+  // console.log(countWords(secondStr));
+
+  console.log(commonWords(firstStr, secondStr), "empty");
+  //I think I can just use functions here to run all of the analysis stuff
 }
 
 //maximizes the number of checkboxes to two
