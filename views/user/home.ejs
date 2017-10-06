@@ -77,7 +77,7 @@ function commonWords(str1, str2) {
   var both = [];
   for(var prop in allWords) {
       if(allWords.hasOwnProperty(prop) && (allWords[prop] == 3)) {
-          both.push(prop);
+          both.push(" " + prop);
       }
   }
 
@@ -106,7 +106,7 @@ function compareTexts() {
     $("#displayWords-header").text("Word frequencies in selected txt: ");
     $("#displayWords").html("");
     Object.keys(countWords(firstStr)).forEach(function(word){
-      $("#displayWords").append("<h2>"+ word + countWords(firstStr)[word] + "</h2>");
+      $("#displayWords").append("<h2>Word: '"+ word.substr(1) + "' Frequency: " + countWords(firstStr)[word] + "</h2>");
     });
   } else if (i === 2) {
     $("#displayWords-header").text("Words in common between selected txts: ");
