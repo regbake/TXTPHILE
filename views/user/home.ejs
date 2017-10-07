@@ -33,7 +33,7 @@
 
           <!-- Insert the logic to cut off text if it's longer than 200 -->
           <% if (output.body.length > 200) { %>
-            <p> <%= output.body.substring(0, 200) %> </p>
+            <p> <%= output.body.substring(0, 200) %>... </p>
           <% } else { %>
             <p> <%= output.body %> </p>
           <% }; %>

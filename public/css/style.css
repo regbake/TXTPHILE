@@ -63,7 +63,6 @@ body {
   width: 40%;
   float: right;
   text-align: center;
-
 }
 
 #compare-btn {
@@ -88,4 +87,8 @@ body {
   padding-top: 5%;
   width: 50%;
   margin: 0 auto;
+}
+
+#edit-text-box {
+  text-align: center;
 }

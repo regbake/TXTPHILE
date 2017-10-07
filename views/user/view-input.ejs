@@ -1,9 +1,19 @@
-<h1>sup blood</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12" id="edit-text-box">
+      <h1>View and edit your phile</h1>
 
-<form action="/user/<%= document.dataValues.id %>" method="PUT" id="put-form">
-  <textarea name="editInput"> <%= document.dataValues.body %> </textarea>
-  <button type="submit" class="btn btn-success">Edit Text</button>
-</form>
+      <form action="/user/<%= document.dataValues.id %>" method="PUT" id="put-form">
+        <textarea name="editInput" rows="10" cols="70"> <%= document.dataValues.body %> </textarea>
+        <br>
+        <button type="submit" class="btn btn-success">Edit Text</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
