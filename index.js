@@ -67,9 +67,10 @@ app.post("/upload", upload.single("myFile"), function(req, res){
   res.redirect("/");
 });
 
-app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
-});
+//commenting out this for now, until I can get another link set up
+// app.get('/profile', isLoggedIn, function(req, res) {
+//   res.render('profile');
+// });
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/user', require('./controllers/user'));
