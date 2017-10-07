@@ -1,13 +1,12 @@
 <h1>
-  Home Page, to be viewed after user login!/Probably take tha place
-  of the user profile...
+  Upload and analyze your philes!
 </h1>
 
 <div class="container">
   <div class="row">
     <div id="main-body" class="col-sm-6">
       <p>
-        This should be where the user can upload documents or insert textfiles
+        Upload documents or insert textfiles
       </p>
 
       <form action="/user" method="post" class="input-form">
@@ -31,8 +30,14 @@
       <% document.forEach(function(output){ %>
         <div class="display-text">
           <input type="checkbox" name="texts" value="<%- output.body %>">
-          <!-- I WANT TO MAKE THIS ONLY DISPLAY A BIT OF TEXT... -->
-          <p> <%= output.body %> </p>
+
+          <!-- Insert the logic to cut off text if it's longer than 200 -->
+          <% if (output.body.length > 200) { %>
+            <p> <%= output.body.substring(0, 200) %> </p>
+          <% } else { %>
+            <p> <%= output.body %> </p>
+          <% }; %>
+
           <p>
             <a href="/user/<%= output.id %>/edit">edit</a>
             <a class="delete-link" href="/user/<%= output.id %>">delete</a>
