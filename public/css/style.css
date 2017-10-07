@@ -89,6 +89,10 @@ body {
   margin: 0 auto;
 }
 
+.text-heading {
+  color: white;
+}
+
 #edit-text-box {
   text-align: center;
 }

@@ -2,10 +2,12 @@
   <div class="row">
     <div class="col-lg-12 col-sm-12" style="text-align:center">
       <h1> Upload and analyze your philes! </h1>
+      <br>
+      <br>
     </div>
 
     <div id="main-body" class="col-lg-6 col-sm-12">
-      <p> Upload documents or insert textfiles </p>
+      <p class="text-heading"> Upload documents or insert textfiles </p>
       <form action="/user" method="post" class="input-form">
         <textarea name="userInput" cols="40">Input text here!</textarea> <br>
         <button type="submit" class="btn btn-success">Submit Text</button>
@@ -20,7 +22,7 @@
     </div>
 
     <div id="current-texts" class="col-lg-6 col-sm-12">
-      <p>(select two to compare!)</p>
+      <p class="text-heading">(select one for word frequencies; two for words in common)</p>
       <button type="button" class="btn btn-success" id="compare-btn" onClick="compareTexts()">Compare txts</button>
 
       <% document.forEach(function(output){ %>
