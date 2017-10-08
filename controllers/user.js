@@ -81,8 +81,8 @@ router.get("/:id/edit", isLoggedIn, function(req, res){
   });
 });
 
-router.post("/", isLoggedIn, function(req, res){
-  var currentAuthor = req.body.author;
+router.get("/author/:authorName", isLoggedIn, function(req, res){
+  var currentAuthor = req.params.authorName;
   console.log(currentAuthor);
   console.log("Run the route");
 
