@@ -25,15 +25,6 @@ router.get("/", isLoggedIn, function(req, res){
   });
 });
 
-router.get("/author", isLoggedIn, function(req, res){
-  var poetryUrl = "http://poetrydb.org/author";
-
-  request(poetryUrl, function(error, response, body){
-    var authors = JSON.parse(body);
-    res.render("poems/authors", {authors: authors});
-  })
-});
-
 //delete
 router.delete("/:id", isLoggedIn, function(req,res){
   var postId = req.params.id;
@@ -81,12 +72,28 @@ router.get("/:id/edit", isLoggedIn, function(req, res){
   });
 });
 
+router.get("/author", isLoggedIn, function(req, res){
+  var poetryUrl = "http://poetrydb.org/author";
+
+  request(poetryUrl, function(error, response, body){
+    var authors = JSON.parse(body);
+    console.log(authors);
+    res.render("poems/authors", {authors: authors});
+  })
+});
+
+//GET titles
 router.get("/author/:authorName", isLoggedIn, function(req, res){
   var currentAuthor = req.params.authorName;
-  console.log(currentAuthor);
-  console.log("Run the route");
+  var poetryUrl = "http://poetrydb.org/author/" + currentAuthor + "/title";
 
-  res.redirect("/user/author")
+  request(poetryUrl, function(error, response, body){
+    var titles = JSON.parse(body);
+    console.log(titles);
+    res.render("poems/titles", {titles: titles, currentAuthor: currentAuthor});
+  })
+
+
 })
 
 //handle the uploaded files
