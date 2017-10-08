@@ -5,12 +5,17 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-selection">
+      <!-- form to get titles -->
+      <form method="post" action="/user/author">
+
       <select id="author-selection">
         <% authors.authors.forEach(function(authors){ %>
-          <option value="<%- authors %>"><%= authors %></option>
+          <option name="author" value="<%- authors %>"><%= authors %></option>
         <% }); %>
       </select>
-      <button type="button" onclick="selectAuthor()">Select author</button>
+
+        <button type="button" onclick="selectAuthor()">Select author</button>
+      </form>
 
       <select id="title-selection">
 
@@ -28,11 +33,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-function selectAuthor(){
+
+function selectAuthor() {
   var authorVal = $("#author-selection").val();
   console.log(authorVal);
+
 }
-    // var authorVal = $("#author-selection option:selected").val();
-    // console.log(authorVal);
+
+
+
 
 </script>

@@ -81,6 +81,14 @@ router.get("/:id/edit", isLoggedIn, function(req, res){
   });
 });
 
+router.post("/", isLoggedIn, function(req, res){
+  var currentAuthor = req.body.author;
+  console.log(currentAuthor);
+  console.log("Run the route");
+
+  res.redirect("/user/author")
+})
+
 //handle the uploaded files
 router.post("/", isLoggedIn, upload.single("myFile"), function(req, res){
   var currentUserId = req.user.dataValues.id;
