@@ -1,19 +1,25 @@
-<h1>Select an author!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12" id="poem-header">
+      <h1>Select a poem!</h1>
+    </div>
 
-<form method="post" action="/titles">
+    <div class="col-lg-6 col-md-6 col-sm-12" id="poem-selection">
+      <select id="author-selection">
+        <% authors.authors.forEach(function(authors){ %>
+          <option value="<% authors %>"><%= authors %></option>
+        <% }); %>
+      </select>
+    </div>
 
-<select class="selectpicker" onChange="selectAuthor(this.value)">
-<!-- Display all the authors from db -->
-<% authors.authors.forEach(function(authors){ %>
-  <option><%= authors %></option>
-<% }); %>
-</select>
-<button type="submit" class="btn btn-success">Select</button>
-</form>
+    <div class="col-lg-6 col-md-6 col-sm-12" id="poem-display">
+      <p>Display the poem and here before commiting to the db</p>
+      <button type="button">Select poem</button>
+    </div>
+  </div>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-function selectAuthor(param) {
-console.log(param);
-}
-
+  $.ajax({url: "http://poetrydb.org/title/Ozymandias/lines.json"})
 </script>

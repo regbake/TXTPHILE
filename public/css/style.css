@@ -35,7 +35,7 @@ body {
 
 #nav-links li {
   display: inline;
-  padding: 5%;
+  padding: 2%;
 }
 
 #nav-links li a {
@@ -95,4 +95,19 @@ body {
 
 #edit-text-box {
   text-align: center;
+}
+
+/*poems page*/
+#poem-header {
+  text-align: center;
+}
+
+#poem-selection {
+  background-color: grey;
+  height: 200px;
+}
+
+#poem-display {
+  background-color: lightgrey;
+  height: 300px;
 }

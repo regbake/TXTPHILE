@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../models');
 var passport = require('../config/ppConfig');
 var isLoggedIn = require('../middleware/isLoggedIn');
+var request = require("request");
 
 //multer shiz
 var multer = require("multer");
@@ -22,6 +23,15 @@ router.get("/", isLoggedIn, function(req, res){
       document: document
     });
   });
+});
+
+router.get("/author", isLoggedIn, function(req, res){
+  var poetryUrl = "http://poetrydb.org/author";
+
+  request(poetryUrl, function(error, response, body){
+    var authors = JSON.parse(body);
+    res.render("poems/authors", {authors: authors});
+  })
 });
 
 //delete
@@ -54,11 +64,13 @@ router.put("/:id", isLoggedIn, function(req,res){
   });
 });
 
-router.get("/:id/edit", isLoggedIn, function(req,res){
+router.get("/poems", isLoggedIn, function(req, res){
+  res.render("poems/authors");
+});
+
+router.get("/:id/edit", isLoggedIn, function(req, res){
   var postId = req.params.id; //the id of the current post
   var currentUserId = req.user.dataValues.id;
-
-  console.log("running the get route");
 
   db.document.findOne({
     where: {userId: currentUserId,
