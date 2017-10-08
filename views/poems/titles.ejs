@@ -6,18 +6,17 @@
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-selection">
         <select id="author-selection">
-          <option name="author"><%= currentAuthor %></option>
+          <option id="authorId"><%= currentAuthor %></option>
         </select>
-        <a id="selectAuthor" href="/user/author/#">Select author</a>
 
-        <!-- /////// -->
+        <!-- Title Query -->
       <select id="title-selection">
         <option value="#">Select the title</option>
-
         <% titles.forEach(function(title){ %>
-          <option value="#"><%= title.title %></option>
+          <option value="<%= title.title %>"><%= title.title %></option>
         <% }); %>
       </select>
+      <a id="selectTitle" href="/user/author/#">Select title</a>
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-display">
@@ -30,11 +29,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 
-  // $("#author-selection").change(function(){
-  //     var currAuthor = this.value;
-  //     $("#selectAuthor").attr("href", "/user/author/"+currAuthor)
-  //     console.log(currAuthor);
-  // });
+$("#title-selection").change(function(){
+    var currTitle = this.value;
+    var currAuthor = $("#authorId").text();
+
+    $("#selectTitle").attr("href", "/user/author/"+currAuthor+"/title/"+currTitle);
+});
 
 
 

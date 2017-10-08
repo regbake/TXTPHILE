@@ -79,7 +79,7 @@ router.get("/author", isLoggedIn, function(req, res){
     var authors = JSON.parse(body);
     console.log(authors);
     res.render("poems/authors", {authors: authors});
-  })
+  });
 });
 
 //GET titles
@@ -91,10 +91,24 @@ router.get("/author/:authorName", isLoggedIn, function(req, res){
     var titles = JSON.parse(body);
     console.log(titles);
     res.render("poems/titles", {titles: titles, currentAuthor: currentAuthor});
-  })
+  });
+});
 
-
-})
+router.get("/author/:authorName/title/:titleName", isLoggedIn, function(req, res){
+  var currAuthor = req.params.authorName;
+  var currTitle = req.params.titleName;
+  var poetryUrl = "http://poetrydb.org/title,author/" + currTitle + ";" + currAuthor + "/lines.json";
+  console.log("made it thus far");
+  request(poetryUrl, function(error, response, body){
+    var poem = JSON.parse(body);
+    console.log(poem);
+    res.render("poems/poem", {
+      currTitle: currTitle,
+      currAuthor: currAuthor,
+      poem: poem
+    });
+  });
+});
 
 //handle the uploaded files
 router.post("/", isLoggedIn, upload.single("myFile"), function(req, res){
