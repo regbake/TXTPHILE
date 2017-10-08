@@ -72,6 +72,18 @@ router.get("/:id/edit", isLoggedIn, function(req, res){
   });
 });
 
+router.post("/author", isLoggedIn, function(req, res){
+  var poem = req.body.poem;
+  var currentUserId = req.user.dataValues.id;
+
+  console.log("AT THE POST ROUTE");
+  db.document.create({
+    body: poem,
+    userId: currentUserId
+  })
+  res.redirect("/user");
+})
+
 router.get("/author", isLoggedIn, function(req, res){
   var poetryUrl = "http://poetrydb.org/author";
 
@@ -98,7 +110,7 @@ router.get("/author/:authorName/title/:titleName", isLoggedIn, function(req, res
   var currAuthor = req.params.authorName;
   var currTitle = req.params.titleName;
   var poetryUrl = "http://poetrydb.org/title,author/" + currTitle + ";" + currAuthor + "/lines.json";
-  
+
   request(poetryUrl, function(error, response, body){
     var poem = JSON.parse(body);
     console.log(poem);
