@@ -98,7 +98,7 @@ router.get("/author/:authorName/title/:titleName", isLoggedIn, function(req, res
   var currAuthor = req.params.authorName;
   var currTitle = req.params.titleName;
   var poetryUrl = "http://poetrydb.org/title,author/" + currTitle + ";" + currAuthor + "/lines.json";
-  console.log("made it thus far");
+  
   request(poetryUrl, function(error, response, body){
     var poem = JSON.parse(body);
     console.log(poem);

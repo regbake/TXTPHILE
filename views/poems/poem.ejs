@@ -17,8 +17,10 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-display">
-      <p><%= poem[0].lines %></p>
-      <button type="button">Select poem</button>
+      <form action="//" method="post">
+        <textarea name="poem" cols="80" rows="20" readonly> <%= poem[0].lines %> </textarea>
+        <button type="button" onclick="showPoem()">Select poem</button>
+      </form>
     </div>
   </div>
 </div>
@@ -26,13 +28,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 
-$("#title-selection").change(function(){
-    var currTitle = this.value;
-    var currAuthor = $("#authorId").text();
-
-    console.log(currTitle);
-    $("#selectAuthor").attr("href", "/user/author/"+currAuthor+"/title/"+currTitle);
-});
+function showPoem() {
+  console.log($("#poem-display").text());
+}
 
 
 
