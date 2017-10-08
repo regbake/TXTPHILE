@@ -6,7 +6,7 @@
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-selection">
         <select id="author-selection">
-          <option id="authorId"><%= currentAuthor %></option>
+          <option id="authorId"><%= currAuthor %></option>
         </select>
 
         <!-- Title Query -->
@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-display">
-      <p>Display the poem and here before commiting to the db</p>
+      <p><%= poem[0].lines %></p>
       <button type="button">Select poem</button>
     </div>
   </div>
