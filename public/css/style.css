@@ -5,6 +5,16 @@ body {
   height: 500px;
 }
 
+#poem-link {
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+#poem-link:hover {
+  color: coral;
+}
+
 #header-logo {
   position: relative;
   width: 15%;
@@ -93,6 +103,26 @@ body {
   color: white;
 }
 
+#selectAuthor {
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+#selectAuthor:hover {
+  color: coral;
+}
+
+#selectTitle {
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+#selectTitle:hover {
+  color: coral;
+}
+
 #edit-text-box {
   text-align: center;
 }
@@ -103,11 +133,12 @@ body {
 }
 
 #poem-selection {
-  background-color: grey;
+  /*background-color: grey;*/
   height: 200px;
 }
 
 #poem-display {
-  background-color: lightgrey;
+  /*background-color: lightgrey;*/
   height: 300px;
+  text-align: center;
 }

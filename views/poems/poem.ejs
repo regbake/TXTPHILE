@@ -11,15 +11,14 @@
 
         <!-- Title Query -->
       <select id="title-selection">
-        <option value="#">Select the title</option>
+        <option value="#"><%= currTitle %></option>
       </select>
-      <a id="selectTitle" href="/user/author/#"><%= currTitle %></a>
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-display">
       <form action="/user/author" method="post">
         <textarea name="poem" cols="80" rows="20" readonly> <%= poem[0].lines %> </textarea>
-        <button type="submit" class="btn btn-success">Select poem</button>
+        <button type="submit" class="btn btn-success">Save poem</button>
       </form>
     </div>
   </div>

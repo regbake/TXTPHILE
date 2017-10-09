@@ -2,15 +2,16 @@
   <div class="row">
     <div class="col-lg-12 col-sm-12" style="text-align:center">
       <h1> Upload and analyze your philes! </h1>
-      <a href="user/author">upload a poem</a>
       <br>
       <br>
     </div>
 
     <div id="main-body" class="col-lg-6 col-sm-12">
+      <a id="poem-link" href="user/author">Select A Poem</a>
+      <br><br>
       <p class="text-heading"> Upload documents or insert textfiles </p>
       <form action="/user" method="post" class="input-form">
-        <textarea name="userInput" cols="40">Input text here!</textarea> <br>
+        <textarea name="userInput" cols="40" placeholder="Input text here!"></textarea> <br>
         <button type="submit" class="btn btn-success">Submit Text</button>
       </form>
       <br>
