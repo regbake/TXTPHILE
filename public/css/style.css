@@ -5,6 +5,15 @@ body {
   height: 500px;
 }
 
+.image {
+  width: 50%;
+  height: 50%;
+  border: solid white 5px;
+  position: relative;
+  top: 15px;
+  left: 25%;
+}
+
 #poem-link {
   position: relative;
   top: 12px;
@@ -100,7 +109,7 @@ body {
 }
 
 .body-text {
-  padding-top: 12%;
+  padding-top: 6%;
   width: 50%;
   margin: 0 auto;
 }
