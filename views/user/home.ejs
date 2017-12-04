@@ -6,19 +6,22 @@
       <br>
     </div>
 
-    <div id="main-body" class="col-lg-6 col-sm-12">
-      <a id="poem-link" href="user/author">Select A Poem testing testing</a>
+    <div id="main-body" class="col-lg-6 col-sm-12 outline">
+      <a id="poem-link" href="user/author">Select A Poem</a>
       <br><br>
+
       <p class="text-heading"> Upload documents or insert textfiles </p>
       <form action="/user" method="post" class="input-form">
         <textarea name="userInput" cols="40" placeholder="Input text here!"></textarea> <br>
         <button type="submit" class="btn btn-success">Submit Text</button>
       </form>
       <br>
+
       <form enctype="multipart/form-data" action="/user" method="post" class="input-form">
         <input type="file" name="myFile">
         <button type="submit" class="btn btn-success">Submit File</button>
       </form>
+
       <h1 id="displayWords-header">Word data:</h1>
       <h2 id="displayWords"></h2>
     </div>
@@ -39,8 +42,8 @@
           <% }; %>
 
           <p>
-            <a href="/user/<%= output.id %>/edit">edit</a>
-            <a class="delete-link" href="/user/<%= output.id %>">delete</a>
+            <a class="linking" href="/user/<%= output.id %>/edit">edit</a>
+            <a class="delete-link linking" href="/user/<%= output.id %>">delete</a>
           </p>
         </div>
       <% }); %>

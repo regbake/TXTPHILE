@@ -6,9 +6,15 @@ body {
 }
 
 #poem-link {
+  position: relative;
+  top: 12px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
+  padding: 8px;
+  background-color: rgba(83,181,83,.9);
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 #poem-link:hover {
@@ -60,6 +66,7 @@ body {
 #main-body{
   /*border: black solid 1px;*/
   text-align: center;
+  background: rgba(100, 100, 100, .3);
 }
 
 .input-form {
@@ -79,12 +86,17 @@ body {
   text-align: center;
 }
 
+.outline {
+    border: solid white 1px;
+}
+
 .display-text {
   position: relative;
   border: solid white 1px;
   margin: 5px;
   width: 100%;
   left: 0;
+  background-color: rgba(100, 100, 100, .3);
 }
 
 .body-text {
@@ -100,6 +112,10 @@ body {
 }
 
 .text-heading {
+  color: white;
+}
+
+.linking {
   color: white;
 }
 
