@@ -11,12 +11,15 @@
       <br><br>
 
       <p class="text-heading"> Upload documents or insert textfiles </p>
+
+      <!-- submit text -->
       <form action="/user" method="post" class="input-form">
         <textarea name="userInput" cols="40" placeholder="Input text here!"></textarea> <br>
         <button type="submit" class="btn btn-success">Submit Text</button>
       </form>
       <br>
 
+      <!-- file submit -->
       <form enctype="multipart/form-data" action="/user" method="post" class="input-form">
         <input type="file" name="myFile">
         <button type="submit" class="btn btn-success">Submit File</button>
@@ -37,7 +40,7 @@
           <!-- Insert the logic to cut off text if it's longer than 200 -->
           <% if (output.body.length > 200) { %>
             <p> <%= output.body.substring(0, 200) %>... </p>
-          <% } else { %>
+            <% } else { %>
             <p> <%= output.body %> </p>
           <% }; %>
 
@@ -52,7 +55,6 @@
   </div>
 </div>
 
-<!-- //////// -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
   //to break down the word frequencies
@@ -93,8 +95,8 @@
     for(var prop in allWords) {
         if(allWords.hasOwnProperty(prop) && (allWords[prop] == 3)) {
             both.push(" " + prop);
-        }
-    }
+        };
+    };
 
     return both;
   };

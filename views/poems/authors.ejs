@@ -1,19 +1,20 @@
 <div class="container">
   <div class="row">
+    
     <div class="col-lg-12 col-sm-12" id="poem-header">
       <h1>Select an author, title; poem!</h1>
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12" id="poem-selection">
-        <select id="author-selection">
-          <option name="author">Select an author</option>
-          <% authors.authors.forEach(function(authors){ %>
-            <option name="author" value="<%- authors %>"><%= authors %></option>
-          <% }); %>
-        </select>
-        <a id="selectAuthor" href="/user/author/#">Select author</a>
+      <select id="author-selection">
+        <option name="author">Select an author</option>
+        <% authors.authors.forEach(function(authors){ %>
+          <option name="author" value="<%- authors %>"><%= authors %></option>
+        <% }); %>
+      </select>
 
-        <!-- /////// -->
+      <a id="selectAuthor" href="/user/author/#">Select author</a>
+
       <select id="title-selection">
           <option value="#">Select the title</option>
       </select>
@@ -23,16 +24,14 @@
       <p>Select a poem...!</p>
       <button type="button">Select poem</button>
     </div>
+
   </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-
   $("#author-selection").change(function(){
       var currAuthor = this.value;
-      $("#selectAuthor").attr("href", "/user/author/"+currAuthor)
+      $("#selectAuthor").attr("href", "/user/author/"+currAuthor);
   });
-
-
 </script>
