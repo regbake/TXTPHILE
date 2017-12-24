@@ -55,118 +55,101 @@
 <!-- //////// -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-//to break down the word frequencies
-function countWords(string) {
-  var wordCounts = { };
-  var words = string.split(/\s/);
+  //to break down the word frequencies
+  function countWords(string) {
+    var wordCounts = { };
+    var words = string.split(/\s/);
 
-  for(var i = 0; i < words.length; i++)
-      wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
+    for(var i = 0; i < words.length; i++)
+        wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
 
-  return wordCounts;
-}
-
-function commonWords(str1, str2) {
-  var words1 = str1.split(/\s+/g);
-  var words2 = str2.split(/\s+/g);
-
-  var allWords = {};
-
-  for (var i=0; i<words1.length; i++) {
-    var insertWord = words1[i];
-    allWords[insertWord] = 1;
-  };
-
-  for (var i=0; i<words2.length; i++) {
-    var curr = 0;
-    var insertWord = words2[i];
-
-    if (allWords.hasOwnProperty(insertWord)) {
-      if (allWords[insertWord] = 1) {
-        //found a match
-        allWords[insertWord] = 3;
-      }
-    };
-  };
-
-  var both = [];
-  for(var prop in allWords) {
-      if(allWords.hasOwnProperty(prop) && (allWords[prop] == 3)) {
-          both.push(" " + prop);
-      }
+    return wordCounts;
   }
 
-  // console.log("all words is: ", allWords, " || common words are: ", both);
-  return both;
-}
+  //to find words in common
+  function commonWords(str1, str2) {
+    var words1 = str1.split(/\s+/g);
+    var words2 = str2.split(/\s+/g);
+    var allWords = {};
 
-function compareTexts() {
-  var i = 0; //keep track of box checks
-  var firstStr, secondStr;
-  //give variable names to the checked texts
-  $('input[name="texts"]:checked').each(function(){
-    if (i === 0) {
-      firstStr = this.value;
-      i++;
-      console.log(i);
-    } else {
-      secondStr = this.value;
-      i++;
+    for (var i=0; i<words1.length; i++) {
+      var insertWord = words1[i];
+      allWords[insertWord] = 1;
+    };
+
+    for (var i=0; i<words2.length; i++) {
+      var curr = 0;
+      var insertWord = words2[i];
+
+      if (allWords.hasOwnProperty(insertWord)) {
+        if (allWords[insertWord] = 1) {
+          //found a match
+          allWords[insertWord] = 3;
+        }
+      };
+    };
+
+    var both = [];
+    for(var prop in allWords) {
+        if(allWords.hasOwnProperty(prop) && (allWords[prop] == 3)) {
+            both.push(" " + prop);
+        }
+    }
+
+    return both;
+  };
+
+  function compareTexts() {
+    var i = 0; //keep track of box checks
+    var firstStr, secondStr;
+
+    //give variable names to the checked texts
+    $('input[name="texts"]:checked').each(function(){
+      if (i === 0) {
+        firstStr = this.value;
+        i++;
+      } else {
+        secondStr = this.value;
+        i++;
+      }
+    })
+
+    if (i === 1) {
+      $("#displayWords-header").text("Word frequencies in selected txt: ");
+      $("#displayWords").html(""); //clear the DOM
+
+      Object.keys(countWords(firstStr)).forEach(function(word){
+        $("#displayWords").append("<h2>Word: '"+ word.substr(1) + "' Frequency: " + countWords(firstStr)[word] + "</h2>");
+      });
+    } else if (i === 2) {
+      $("#displayWords-header").text("Words in common between selected txts: ");
+      $("#displayWords").html("");
+      $("#displayWords").text(commonWords(firstStr, secondStr));
+    }
+  };
+
+  //limits the number of checkboxes to two
+  $("#current-texts :checkbox").change(function(){
+    var check = $(this).closest("#current-texts").find(":checkbox:checked");
+    if (check.length > 2) {
+      this.checked = false;
     }
   });
 
-  //$("#displayWords").text(commonWords(firstStr, secondStr));
+  //for the delete route
+  $('.delete-link').on('click', function(e) {
+      e.preventDefault();
+      var element = $(this);
+      var url = element.attr('href');
 
-  if (i === 1) {
-    $("#displayWords-header").text("Word frequencies in selected txt: ");
-    $("#displayWords").html(""); //clear the DOM
-
-    Object.keys(countWords(firstStr)).forEach(function(word){
-      $("#displayWords").append("<h2>Word: '"+ word.substr(1) + "' Frequency: " + countWords(firstStr)[word] + "</h2>");
-    });
-  } else if (i === 2) {
-    $("#displayWords-header").text("Words in common between selected txts: ");
-    $("#displayWords").html("");
-    $("#displayWords").text(commonWords(firstStr, secondStr));
-  }
-
-  // $("#displayWords").text(function(){
-  //   if (i === 1) {
-  //     console.log(countWords(firstStr));
-  //     //return countWords(firstStr).toString();
-  //   } else {
-  //     return commonWords(firstStr, secondStr);
-  //   }
-  // });
-
-  // return commonWords(firstStr, secondStr);
-}
-
-//maximizes the number of checkboxes to two
-$("#current-texts :checkbox").change(function(){
-  var check = $(this).closest("#current-texts").find(":checkbox:checked");
-  if (check.length > 2) {
-    this.checked = false;
-  }
-})
-
-//for the delete route
-$('.delete-link').on('click', function(e) {
-    e.preventDefault();
-    console.log("ajax delete wassup")
-    var element = $(this);
-    var url = element.attr('href');
-
-    $.ajax({
-        method: 'DELETE',
-        url: url
-    }).done(function(data) {
-        // get data returned from the DELETE route
-        console.log(data);
-
-        // go back to the homepage after deleting anything.
-        window.location = '/user';
-    });
-});
-
+      $.ajax({
+          method: 'DELETE',
+          url: url
+      }).done(function(data) {
+          // get data returned from the DELETE route
+          console.log(data);
+          // go back to the homepage after deleting anything.
+          window.location = '/user';
+      });
+  });
 </script>

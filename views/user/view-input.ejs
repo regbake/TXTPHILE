@@ -17,23 +17,22 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-//for the put route
-$('#put-form').on('submit', function(e) {
-  console.log("what is up here");
-    e.preventDefault();
-    var element = $(this);
-    var url = element.attr('action');
-    var formData = element.serialize();
-    $.ajax({
-        method: 'PUT',
-        url: url,
-        data: formData
-    }).done(function(data) {
-        // get data returned from the PUT route
-        console.log(data);
+  //for the put route
+  $('#put-form').on('submit', function(e) {
+      e.preventDefault();
+      var element = $(this);
+      var url = element.attr('action');
+      var formData = element.serialize();
 
-        // refresh the page we're on using GET to display the item details.
-        window.location = "/user";
-    });
-});
+      $.ajax({
+          method: 'PUT',
+          url: url,
+          data: formData
+      }).done(function(data) {
+          // data returned from the PUT route
+          console.log(data);
+          // refresh the page we're on using GET to display the item details.
+          window.location = "/user";
+      });
+  });
 </script>
